@@ -3,22 +3,22 @@ type Movie {
 	title: String!
 	year: Int!
 	rating: Int!
-	directors: [String!]!
-	writers: [String!]!
+	directors: [Person!]
+	writers: [Person!]
 	genres: [String!]!
-	actors: [Actor]
+	actors: [Person!]
 }
 
-type Actor {
-	id: Int
-	firstName: String
-	lastName: String
+type Person {
+	id: Int!
+	firstName: String!
+	middleName: String
+	lastName: String!
 	movies: [Movie]
 }
 
-
 type Query {
 	hello(name: String): String!
-	movies: [Movie] 
-	actors: [Actor] 
+	movies: [Movie!]! 
+	actors: [Person!]! 
 }

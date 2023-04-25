@@ -13,31 +13,32 @@ export type Scalars = {
   Float: number;
 };
 
-export type Actor = {
-  __typename?: 'Actor';
-  firstName?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  lastName?: Maybe<Scalars['String']>;
-  movies?: Maybe<Array<Maybe<Movie>>>;
-};
-
 export type Movie = {
   __typename?: 'Movie';
-  actors?: Maybe<Array<Maybe<Actor>>>;
-  directors: Array<Scalars['String']>;
+  actors?: Maybe<Array<Person>>;
+  directors?: Maybe<Array<Person>>;
   genres: Array<Scalars['String']>;
   id: Scalars['Int'];
   rating: Scalars['Int'];
   title: Scalars['String'];
-  writers: Array<Scalars['String']>;
+  writers?: Maybe<Array<Person>>;
   year: Scalars['Int'];
+};
+
+export type Person = {
+  __typename?: 'Person';
+  firstName: Scalars['String'];
+  id: Scalars['Int'];
+  lastName: Scalars['String'];
+  middleName?: Maybe<Scalars['String']>;
+  movies?: Maybe<Array<Maybe<Movie>>>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  actors?: Maybe<Array<Maybe<Actor>>>;
+  actors: Array<Person>;
   hello: Scalars['String'];
-  movies?: Maybe<Array<Maybe<Movie>>>;
+  movies: Array<Movie>;
 };
 
 
@@ -116,53 +117,54 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Actor: ResolverTypeWrapper<Actor>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Movie: ResolverTypeWrapper<Movie>;
+  Person: ResolverTypeWrapper<Person>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Actor: Actor;
   Boolean: Scalars['Boolean'];
   Int: Scalars['Int'];
   Movie: Movie;
+  Person: Person;
   Query: {};
   String: Scalars['String'];
 };
 
-export type ActorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Actor'] = ResolversParentTypes['Actor']> = {
-  firstName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  lastName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  movies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Movie']>>>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type MovieResolvers<ContextType = any, ParentType extends ResolversParentTypes['Movie'] = ResolversParentTypes['Movie']> = {
-  actors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Actor']>>>, ParentType, ContextType>;
-  directors?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  actors?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
+  directors?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
   genres?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   rating?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  writers?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  writers?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
   year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  actors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Actor']>>>, ParentType, ContextType>;
-  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<QueryHelloArgs>>;
+export type PersonResolvers<ContextType = any, ParentType extends ResolversParentTypes['Person'] = ResolversParentTypes['Person']> = {
+  firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  middleName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   movies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Movie']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  actors?: Resolver<Array<ResolversTypes['Person']>, ParentType, ContextType>;
+  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<QueryHelloArgs>>;
+  movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  Actor?: ActorResolvers<ContextType>;
   Movie?: MovieResolvers<ContextType>;
+  Person?: PersonResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };
 

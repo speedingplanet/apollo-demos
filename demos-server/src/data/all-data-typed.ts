@@ -1,4 +1,4 @@
-import { type Movie } from '../generated/graphql.js';
+import type { Person, Movie } from '../generated/graphql.js';
 
 export interface Student {
 	firstName: string;
@@ -13,20 +13,23 @@ export interface Student {
 	id: number;
 }
 
-export interface Actor {
-	id: number;
-	firstName: string;
-	middleName?: string;
-	lastName: string;
-}
-
-export interface MoviesActors {
+export interface MoviesPeople {
 	id: number;
 	movieId: number;
-	actorId: number;
+	personId: number;
+	job: Job;
 }
 
-export const actors: Actor[] = [
+export enum Job {
+	ACTOR = 1,
+	DIRECTOR = 2,
+	WRITER = 3,
+	PRODUCER = 4,
+	EXECUTIVE_PRODUCER = 5,
+	CINEMATOGRAPHER = 6
+};
+
+export const people: Person[] = [
 	{
 		id: 1,
 		firstName: 'Michael',
@@ -240,45 +243,290 @@ export const actors: Actor[] = [
 	},
 ];
 
-export const moviesActors: MoviesActors[] = [
+export const moviesPeople: MoviesPeople[] = [
 	{
 		id: 1,
 		movieId: 1,
-		actorId: 8,
+		personId: 8,
+		job: Job.ACTOR,
 	},
 	{
 		id: 2,
 		movieId: 1,
-		actorId: 9,
+		personId: 9,
+		job: Job.ACTOR,
 	},
 	{
 		id: 3,
 		movieId: 1,
-		actorId: 10,
+		personId: 10,
+		job: Job.DIRECTOR,
 	},
 	{
 		id: 4,
 		movieId: 1,
-		actorId: 11,
+		personId: 11,
+		job: Job.WRITER,
 	},
 	{
 		id: 5,
 		movieId: 1,
-		actorId: 12,
+		personId: 12,
+		job: Job.WRITER,
 	},
 	{
 		id: 6,
 		movieId: 1,
-		actorId: 13,
+		personId: 13,
+		job: Job.WRITER,
 	},
-
+	{
+		id: 7,
+		movieId: 2,
+		personId: 2,
+		job: Job.ACTOR,
+	},
+	{
+		id: 8,
+		movieId: 2,
+		personId: 3,
+		job: Job.ACTOR,
+	},
+	{
+		id: 9,
+		movieId: 2,
+		personId: 4,
+		job: Job.ACTOR,
+	},
+	{
+		id: 10,
+		movieId: 2,
+		personId: 5,
+		job: Job.ACTOR,
+	},
+	{
+		id: 11,
+		movieId: 2,
+		personId: 6,
+		job: Job.ACTOR,
+	},
+	{
+		id: 12,
+		movieId: 2,
+		personId: 7,
+		job: Job.ACTOR,
+	},
+	{
+		id: 13,
+		movieId: 2,
+		personId: 1,
+		job: Job.DIRECTOR,
+	},
+	{
+		id: 14,
+		movieId: 2,
+		personId: 1,
+		job: Job.WRITER,
+	},
+	{
+		id: 15,
+		movieId: 3,
+		personId: 14,
+		job: Job.ACTOR,
+	},
+	{
+		id: 16,
+		movieId: 3,
+		personId: 15,
+		job: Job.ACTOR,
+	},
+	{
+		id: 17,
+		movieId: 3,
+		personId: 16,
+		job: Job.ACTOR,
+	},
+	{
+		id: 18,
+		movieId: 3,
+		personId: 17,
+		job: Job.ACTOR,
+	},
+	{
+		id: 19,
+		movieId: 3,
+		personId: 18,
+		job: Job.DIRECTOR,
+	},
+	{
+		id: 20,
+		movieId: 3,
+		personId: 18,
+		job: Job.WRITER,
+	},
+	{
+		id: 21,
+		movieId: 3,
+		personId: 19,
+		job: Job.WRITER,
+	},
+	{
+		id: 22,
+		movieId: 3,
+		personId: 20,
+		job: Job.WRITER,
+	},
+	{
+		id: 23,
+		movieId: 4,
+		personId: 21,
+		job: Job.ACTOR,
+	},
+	{
+		id: 24,
+		movieId: 4,
+		personId: 22,
+		job: Job.ACTOR,
+	},
+	{
+		id: 25,
+		movieId: 4,
+		personId: 23,
+		job: Job.ACTOR,
+	},
+	{
+		id: 26,
+		movieId: 4,
+		personId: 24,
+		job: Job.ACTOR,
+	},
+	{
+		id: 27,
+		movieId: 4,
+		personId: 25,
+		job: Job.ACTOR,
+	},
+	{
+		id: 28,
+		movieId: 4,
+		personId: 26,
+		job: Job.ACTOR,
+	},
+	{
+		id: 29,
+		movieId: 4,
+		personId: 27,
+		job: Job.ACTOR,
+	},
+	{
+		id: 30,
+		movieId: 4,
+		personId: 28,
+		job: Job.ACTOR,
+	},
+	{
+		id: 31,
+		movieId: 4,
+		personId: 29,
+		job: Job.ACTOR,
+	},
+	{
+		id: 32,
+		movieId: 4,
+		personId: 30,
+		job: Job.DIRECTOR,
+	},
+	{
+		id: 33,
+		movieId: 4,
+		personId: 30,
+		job: Job.WRITER,
+	},
+	{
+		id: 34,
+		movieId: 4,
+		personId: 31,
+		job: Job.WRITER,
+	},
+	{
+		id: 35,
+		movieId: 5,
+		personId: 32,
+		job: Job.ACTOR,
+	},
+	{
+		id: 36,
+		movieId: 5,
+		personId: 33,
+		job: Job.ACTOR,
+	},
+	{
+		id: 37,
+		movieId: 5,
+		personId: 34,
+		job: Job.ACTOR,
+	},
+	{
+		id: 38,
+		movieId: 5,
+		personId: 35,
+		job: Job.ACTOR,
+	},
+	{
+		id: 39,
+		movieId: 5,
+		personId: 36,
+		job: Job.DIRECTOR,
+	},
+	{
+		id: 40,
+		movieId: 5,
+		personId: 37,
+		job: Job.WRITER,
+	},
+	{
+		id: 41,
+		movieId: 5,
+		personId: 38,
+		job: Job.WRITER,
+	},
+	{
+		id: 42,
+		movieId: 5,
+		personId: 39,
+		job: Job.WRITER,
+	},
+	{
+		id: 43,
+		movieId: 6,
+		personId: 40,
+		job: Job.ACTOR,
+	},
+	{
+		id: 44,
+		movieId: 6,
+		personId: 41,
+		job: Job.ACTOR,
+	},
+	{
+		id: 45,
+		movieId: 6,
+		personId: 42,
+		job: Job.DIRECTOR,
+	},
+	{
+		id: 46,
+		movieId: 6,
+		personId: 42,
+		job: Job.WRITER,
+	},
 ];
 
 /*
-{id: 2, title: 'Heat', 1995, 5, 'R', '15'},
-{id: 3, title: 'Mad Max: Fury Road', 2015, 4, 'R', '15'},
-{id: 4, title: 'Scott Pilgrim vs. the World', 2010, 4, 'PG-13', '12'},
-{id: 5, title: 'Casino Royale', 2006, 4, 'PG-13', '15'},
+{id: 2, title: 'Heat', year:1995, rating: 5, genres: []},
+{id: 3, title: 'Mad Max: Fury Road', year:2015, rating: 4, genres: []},
+{id: 4, title: 'Scott Pilgrim vs. the World', year:2010, rating: 4, genres: []},
+{id: 5, title: 'Casino Royale', year:2006, rating: 4, genres: []},
 */
 
 export const movies: Movie[] = [
@@ -286,12 +534,6 @@ export const movies: Movie[] = [
 		id: 1,
 		title: 'Raiders of the Lost Ark',
 		year: 1981,
-		directors: ['Stephen Spielberg'],
-		writers: [
-			'Lawrence Kasdan',
-			'George Lucas',
-			'Philip Kaufman',
-		],
 		rating: 5,
 		genres: [
 			'action',
@@ -299,6 +541,56 @@ export const movies: Movie[] = [
 			'supernatural',
 		],
 	},
+	{
+		id: 2,
+		title: 'Heat',
+		year: 1995,
+		rating: 5,
+		genres: [
+			'crime',
+			'police',
+			'drama',
+			'action',
+		],
+	},
+	{
+		id: 3,
+		title: 'Mad Max: Fury Road',
+		year: 2015,
+		rating: 4,
+		genres: ['action', 'post-apocalypse'],
+	},
+	{
+		id: 4,
+		title: 'Scott Pilgrim vs. the World',
+		year: 2010,
+		rating: 4,
+		genres: ['comedy', 'music'],
+	},
+	{
+		id: 5,
+		title: 'Casino Royale',
+		year: 2006,
+		rating: 4,
+		genres: [
+			'bond',
+			'spy',
+			'action',
+		],
+	},
+	{
+		id: 6,
+		title: 'Spirited Away',
+		year: 2001,
+		rating: 5,
+		genres: [
+			'anime',
+			'fantasy',
+			'family',
+			'mystery',
+		],
+	},
+	/*
 	{
 		id: 12,
 		title: 'Casablanca',
@@ -367,20 +659,6 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 6,
-		title: 'Spirited Away',
-		year: 2001,
-		directors: ['Hayao Miyazaki'],
-		writers: ['Hayao Miyazaki'],
-		rating: 5,
-		genres: [
-			'anime',
-			'fantasy',
-			'family',
-			'mystery',
-		],
-	},
-	{
 		id: 17,
 		title: 'A Star Is Born',
 		year: 2018,
@@ -416,6 +694,7 @@ export const movies: Movie[] = [
 			'romance',
 		],
 	},
+	*/
 ];
 
 export const students: Student[] = [
