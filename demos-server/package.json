@@ -6,10 +6,10 @@
 	"scripts": {
 		"compile": "tsc --declaration",
 		"compile:watch": "tsc --declaration --watch",
-		"compile:types": "npm run codegen && tsc",
+		"compile:types": "npm run codegen && tsc --declaration --watch",
 		"codegen": "graphql-codegen --config codegen.ts",
 		"start": "npm run compile && node ./dist/index.js",
-		"start:watch": "nodemon ./dist/index.js",
+		"start:watch": "nodemon ./dist/src/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],

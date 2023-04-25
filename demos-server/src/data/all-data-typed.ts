@@ -1,3 +1,5 @@
+import { type Movie } from '../generated/graphql.js';
+
 export interface Student {
 	firstName: string;
 	lastName: string;
@@ -9,16 +11,6 @@ export interface Student {
 	country: string;
 	postalCode: string;
 	id: number;
-}
-
-export interface Movie {
-	id: number;
-	title: string;
-	year: number;
-	rating: number;
-	directors: string[];
-	writers: string[];
-	genres: string[];
 }
 
 export const movies: Movie[] = [

@@ -15,30 +15,24 @@ export type Scalars = {
 
 export type Movie = {
   __typename?: 'Movie';
-  directors?: Maybe<Array<Maybe<Scalars['String']>>>;
-  genres?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id?: Maybe<Scalars['Int']>;
-  rating?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-  writers?: Maybe<Array<Maybe<Scalars['String']>>>;
-  year?: Maybe<Scalars['Int']>;
+  directors: Array<Scalars['String']>;
+  genres: Array<Scalars['String']>;
+  id: Scalars['Int'];
+  rating: Scalars['Int'];
+  title: Scalars['String'];
+  writers: Array<Scalars['String']>;
+  year: Scalars['Int'];
 };
 
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String'];
   movies?: Maybe<Array<Maybe<Movie>>>;
-  myCustomQuery: Scalars['String'];
 };
 
 
 export type QueryHelloArgs = {
   name?: InputMaybe<Scalars['String']>;
-};
-
-
-export type QueryMyCustomQueryArgs = {
-  timeOfDay?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -129,20 +123,19 @@ export type ResolversParentTypes = {
 };
 
 export type MovieResolvers<ContextType = any, ParentType extends ResolversParentTypes['Movie'] = ResolversParentTypes['Movie']> = {
-  directors?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
-  genres?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  rating?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  writers?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
-  year?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  directors?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  genres?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  rating?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  writers?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   hello?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<QueryHelloArgs>>;
   movies?: Resolver<Maybe<Array<Maybe<ResolversTypes['Movie']>>>, ParentType, ContextType>;
-  myCustomQuery?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<QueryMyCustomQueryArgs>>;
 };
 
 export type Resolvers<ContextType = any> = {
