@@ -13,26 +13,294 @@ export interface Student {
 	id: number;
 }
 
-export const movies: Movie[] = [
+export interface Actor {
+	id: number;
+	firstName: string;
+	middleName?: string;
+	lastName: string;
+}
+
+export interface MoviesActors {
+	id: number;
+	movieId: number;
+	actorId: number;
+}
+
+export const actors: Actor[] = [
 	{
 		id: 1,
-		title: 'Raiders of the Lost Ark',
-		year: 1981,
-		directors: ['Stephen Spielberg'],
-		writers: [
-			'Lawrence Kasdan',
-			'George Lucas',
-			'Philip Kaufman',
-		],
-		rating: 5,
-		genres: [
-			'action',
-			'adventure',
-			'supernatural',
-		],
+		firstName: 'Michael',
+		lastName: 'Mann',
 	},
 	{
 		id: 2,
+		firstName: 'Robert',
+		lastName: 'De Niro',
+	},
+	{
+		id: 3,
+		firstName: 'Al',
+		lastName: 'Pacino',
+	},
+	{
+		id: 4,
+		firstName: 'Val',
+		lastName: 'Kilmer',
+	},
+	{
+		id: 5,
+		firstName: 'Diane',
+		lastName: 'Venora',
+	},
+	{
+		id: 6,
+		firstName: 'Amy',
+		lastName: 'Brenneman',
+	},
+	{
+		id: 7,
+		firstName: 'Ashley',
+		lastName: 'Judd',
+	},
+	{
+		id: 8,
+		firstName: 'Harrison',
+		lastName: 'Ford',
+	},
+	{
+		id: 9,
+		firstName: 'Karen',
+		lastName: 'Black',
+	},
+	{
+		id: 10,
+		firstName: 'Steven',
+		lastName: 'Spielberg',
+	},
+	{
+		id: 11,
+		firstName: 'George',
+		lastName: 'Lucas',
+	},
+	{
+		id: 12,
+		firstName: 'Philip',
+		lastName: 'Kaufman',
+	},
+	{
+		id: 13,
+		firstName: 'Lawrence',
+		lastName: 'Kasdan',
+	},
+	{
+		id: 14,
+		firstName: 'Charlize',
+		lastName: 'Theron',
+	},
+	{
+		id: 15,
+		firstName: 'Tom',
+		lastName: 'Hardy',
+	},
+	{
+		id: 16,
+		firstName: 'Nicholas',
+		lastName: 'Hoult',
+	},
+	{
+		id: 17,
+		firstName: 'Zoë',
+		lastName: 'Kravitz',
+	},
+	{
+		id: 18,
+		firstName: 'George',
+		lastName: 'Miller',
+	},
+	{
+		id: 19,
+		firstName: 'Nick',
+		lastName: 'Lathouris',
+	},
+	{
+		id: 20,
+		firstName: 'Brendan',
+		lastName: 'McCarthy',
+	},
+	{
+		id: 21,
+		firstName: 'Michael',
+		lastName: 'Cera',
+	},
+	{
+		id: 22,
+		firstName: 'Mary',
+		middleName: 'Elizabeth',
+		lastName: 'Winstead',
+	},
+	{
+		id: 23,
+		firstName: 'Ellen',
+		lastName: 'Wong',
+	},
+	{
+		id: 24,
+		firstName: 'Kieran',
+		lastName: 'Culkin',
+	},
+	{
+		id: 25,
+		firstName: 'Allison',
+		lastName: 'Pill',
+	},
+	{
+		id: 26,
+		firstName: 'Chris',
+		lastName: 'Evans',
+	},
+	{
+		id: 27,
+		firstName: 'Brandon',
+		lastName: 'Routh',
+	},
+	{
+		id: 28,
+		firstName: 'Brie',
+		lastName: 'Larson',
+	},
+	{
+		id: 29,
+		firstName: 'Anna',
+		lastName: 'Kendrick',
+	},
+	{
+		id: 30,
+		firstName: 'Edgar',
+		lastName: 'Wright',
+	},
+	{
+		id: 31,
+		firstName: 'Michael',
+		lastName: 'Bacall',
+	},
+	{
+		id: 32,
+		firstName: 'Daniel',
+		lastName: 'Craig',
+	},
+	{
+		id: 33,
+		firstName: 'Eva',
+		lastName: 'Green',
+	},
+	{
+		id: 34,
+		firstName: 'Mads',
+		lastName: 'Mikkelsen',
+	},
+	{
+		id: 35,
+		firstName: 'Judi',
+		lastName: 'Dench',
+	},
+	{
+		id: 36,
+		firstName: 'Martin',
+		lastName: 'Campbell',
+	},
+	{
+		id: 37,
+		firstName: 'Paul',
+		lastName: 'Haggis',
+	},
+	{
+		id: 38,
+		firstName: 'Robert',
+		lastName: 'Wade',
+	},
+	{
+		id: 39,
+		firstName: 'Neal',
+		lastName: 'Purvis',
+	},
+	{
+		id: 40,
+		firstName: 'Rumi',
+		lastName: 'Hiiragi',
+	},
+	{
+		id: 41,
+		firstName: 'Miyu',
+		lastName: 'Irino',
+	},
+	{
+		id: 42,
+		firstName: 'Hayao',
+		lastName: 'Miyazaki',
+	},
+];
+
+export const moviesActors: MoviesActors[] = [
+	{
+		id: 1,
+		movieId: 1,
+		actorId: 8,
+	},
+	{
+		id: 2,
+		movieId: 1,
+		actorId: 9,
+	},
+	{
+		id: 3,
+		movieId: 1,
+		actorId: 10,
+	},
+	{
+		id: 4,
+		movieId: 1,
+		actorId: 11,
+	},
+	{
+		id: 5,
+		movieId: 1,
+		actorId: 12,
+	},
+	{
+		id: 6,
+		movieId: 1,
+		actorId: 13,
+	},
+
+];
+
+/*
+{id: 2, title: 'Heat', 1995, 5, 'R', '15'},
+{id: 3, title: 'Mad Max: Fury Road', 2015, 4, 'R', '15'},
+{id: 4, title: 'Scott Pilgrim vs. the World', 2010, 4, 'PG-13', '12'},
+{id: 5, title: 'Casino Royale', 2006, 4, 'PG-13', '15'},
+*/
+
+export const movies: Movie[] = [{
+	id: 1,
+	title: 'Raiders of the Lost Ark',
+	year: 1981,
+	directors: ['Stephen Spielberg'],
+	writers: [
+		'Lawrence Kasdan',
+		'George Lucas',
+		'Philip Kaufman',
+	],
+	rating: 5,
+	genres: [
+		'action',
+		'adventure',
+		'supernatural',
+	],
+},
+	/*,
+	{
+		id: 12,
 		title: 'Casablanca',
 		year: 1942,
 		directors: ['Michael Curtiz'],
@@ -50,7 +318,7 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 3,
+		id: 13,
 		title: 'Goodfellas',
 		year: 1990,
 		directors: ['Martin Scorcese'],
@@ -64,7 +332,7 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 4,
+		id: 14,
 		title: 'The Lord of the Rings: The Fellowship of the Ring',
 		year: 2001,
 		directors: ['Peter Jackson'],
@@ -81,7 +349,7 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 5,
+		id: 15,
 		title: 'Avengers: Endgame',
 		year: 2019,
 		directors: ['Anthony Russo', 'Joe Russo'],
@@ -113,7 +381,7 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 7,
+		id: 17,
 		title: 'A Star Is Born',
 		year: 2018,
 		directors: ['Bradley Cooper'],
@@ -131,7 +399,7 @@ export const movies: Movie[] = [
 		],
 	},
 	{
-		id: 8,
+		id: 18,
 		title: 'A Star Is Born',
 		year: 1976,
 		directors: ['Frank Pierson'],
@@ -148,6 +416,7 @@ export const movies: Movie[] = [
 			'romance',
 		],
 	},
+	*/
 ];
 
 export const students: Student[] = [

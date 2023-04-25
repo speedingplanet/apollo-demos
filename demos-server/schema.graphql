@@ -6,9 +6,27 @@ type Movie {
 	directors: [String!]!
 	writers: [String!]!
 	genres: [String!]!
+	actors: [MoviesActors]
 }
+
+type MoviesActors {
+	movieId: Int!
+	actorId: Int!
+	movie: Movie
+	actor: Actor
+}
+
+type Actor {
+	id: Int
+	firstName: String
+	lastName: String
+	movies: [MoviesActors]
+}
+
 
 type Query {
 	hello(name: String): String!
 	movies: [Movie] 
+	actors: [Actor] 
+	moviesActors: [MoviesActors] 
 }
