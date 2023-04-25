@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { useLazyQuery, gql } from '@apollo/client';
-import { type Movie } from '../../data/all-data-typed';
+import { type Movie } from '../../generated/graphql';
 
 const GET_MOVIES_BY_GENRE = gql`
-	query GetMoviesByGenre($genre: String) {
-		movies(genre: $genre) {
-			id
+	query GetMoviesByGenre($filter: MovieFilterInput) {
+		movies(filter: $filter) {
 			title
-			year
-			directors
-			writers
-			rating
 			genres
 		}
 	}
@@ -31,15 +26,20 @@ export function RenderGraphql() {
 	let [loadQuery,
 		{
 			called, loading, data,
-		}] = useLazyQuery<{ movies: Array<Partial<Movie>> }>(GET_MOVIES_BY_GENRE);
+		}] = useLazyQuery<{ movies: Movie[] }>(
+		GET_MOVIES_BY_GENRE
+	);
 
 	let handleSearchClick = async () => {
 		if (userGenre) {
-			await loadQuery({ variables: { genre: userGenre } });
+			await loadQuery({ variables: { filter: { genre: userGenre } } });
 		} else {
 			await loadQuery();
 		}
 	};
+
+	if (loading) return <p>Loading...</p>;
+
 	return (
 		<section className="row">
 			<div className="col">

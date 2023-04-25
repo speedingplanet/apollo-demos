@@ -6,7 +6,7 @@ import Home from './Home';
 
 // Apollo Client
 const client = new ApolloClient({
-	uri: 'http://localhost:4000',
+	uri: 'http://127.0.0.1:4000',
 	cache: new InMemoryCache(),
 });
 
@@ -15,7 +15,7 @@ function App() {
 		<main className="container">
 			<header className="row">
 				<div className="col">
-					<h1>React Playground</h1>
+					<h1>Apollo Demos</h1>
 					<hr />
 				</div>
 			</header>
