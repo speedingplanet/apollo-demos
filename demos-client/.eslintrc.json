@@ -1,0 +1,3 @@
+{
+	"extends": ["@speedingplanet/eslint-config-typescript"]
+}

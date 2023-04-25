@@ -1,0 +1,48 @@
+.clickable {
+  cursor: pointer;
+  user-select: none; /* Might be frustrating since the text is unselectable */
+}
+
+.movie-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow-y: auto;
+
+  /* Uncomment this to see fixed headers in action */
+  /* height: 10vh; */
+}
+
+.mc-2 {
+  grid-template-columns: repeat(2, minmax(max-content, 1fr));
+}
+
+.mc-3 {
+  grid-template-columns: repeat(3, minmax(max-content, 1fr));
+}
+
+.mc-4 {
+  grid-template-columns: repeat(4, minmax(max-content, 1fr));
+}
+
+.mc-5 {
+  grid-template-columns: repeat(5, minmax(max-content, 1fr));
+}
+
+.mc-6 {
+  grid-template-columns: repeat(6, minmax(max-content, 1fr));
+}
+
+.movie-headers {
+  border-bottom: 1px lightgray solid;
+  position: sticky;
+  /* Need this to "stick" these to the top */
+  top: 0;
+  /* Without a brackground color, you can see "behind" the header row */
+  background-color: white;
+}
+
+.movie-headers,
+.movie-row {
+  /* padding: top right bottom left */
+  padding: 0 1em 0 0.2em;
+}
