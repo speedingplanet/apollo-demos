@@ -1,4 +1,15 @@
+type Movie {
+	id: Int
+	title: String
+	year: Int
+	rating: Int
+	directors: [String]
+	writers: [String]
+	genres: [String]
+}
+
 type Query {
 	hello(name: String): String!
-	myCustomQuery(): String!
+	myCustomQuery(timeOfDay: Int): String!
+	movies: [Movie] 
 }

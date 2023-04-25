@@ -15,9 +15,9 @@ export interface Movie {
 	id: number;
 	title: string;
 	year: number;
+	rating: number;
 	directors: string[];
 	writers: string[];
-	rating: number;
 	genres: string[];
 }
 
