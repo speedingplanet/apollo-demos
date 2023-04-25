@@ -17,8 +17,15 @@ type Person {
 	movies: [Movie]
 }
 
+input MovieFilterInput {
+	title: String
+	year: Int
+	rating: Int
+	genre: String	
+}
+
 type Query {
 	hello(name: String): String!
-	movies: [Movie!]! 
+	movies(filter: MovieFilterInput): [Movie!]! 
 	actors: [Person!]! 
 }

@@ -25,6 +25,13 @@ export type Movie = {
   year: Scalars['Int'];
 };
 
+export type MovieFilterInput = {
+  genre?: InputMaybe<Scalars['String']>;
+  rating?: InputMaybe<Scalars['Int']>;
+  title?: InputMaybe<Scalars['String']>;
+  year?: InputMaybe<Scalars['Int']>;
+};
+
 export type Person = {
   __typename?: 'Person';
   firstName: Scalars['String'];
@@ -44,6 +51,11 @@ export type Query = {
 
 export type QueryHelloArgs = {
   name?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryMoviesArgs = {
+  filter?: InputMaybe<MovieFilterInput>;
 };
 
 
@@ -120,6 +132,7 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Movie: ResolverTypeWrapper<Movie>;
+  MovieFilterInput: MovieFilterInput;
   Person: ResolverTypeWrapper<Person>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -130,6 +143,7 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Int: Scalars['Int'];
   Movie: Movie;
+  MovieFilterInput: MovieFilterInput;
   Person: Person;
   Query: {};
   String: Scalars['String'];
@@ -159,7 +173,7 @@ export type PersonResolvers<ContextType = any, ParentType extends ResolversParen
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   actors?: Resolver<Array<ResolversTypes['Person']>, ParentType, ContextType>;
   hello?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<QueryHelloArgs>>;
-  movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType>;
+  movies?: Resolver<Array<ResolversTypes['Movie']>, ParentType, ContextType, Partial<QueryMoviesArgs>>;
 };
 
 export type Resolvers<ContextType = any> = {

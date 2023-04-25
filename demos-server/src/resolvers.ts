@@ -1,17 +1,34 @@
+import _ from 'lodash';
 import {
 	people as peopleData,
 	movies as moviesData,
 	moviesPeople as moviesPeopleData,
 	Job
 } from './data/all-data-typed.js';
-import type { Person, Resolvers } from './generated/graphql.js';
+import type { Movie, Person, Resolvers } from './generated/graphql.js';
 
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 export const resolvers: Resolvers = {
 	Query: {
 		hello: (_, { name }: { name: string }) => `Hello ${name}!`,
-		movies: () => {
-			return moviesData;
+		movies: (parent, args) => {
+			if ('filter' in args) {
+				let singlePropsCriteria = _.pick(args.filter, [
+					'title',
+					'year',
+					'rating',
+				]);
+
+				let filteredMovies = _.filter(moviesData, singlePropsCriteria) as Movie[];
+				if (args.filter && 'genre' in args.filter) {
+					filteredMovies = filteredMovies.filter(
+						m => m.genres.includes(args.filter?.genre as string)
+					);
+				}
+				return filteredMovies;
+			} else {
+				return moviesData;
+			}
 		},
 		actors: () => {
 			let mps = moviesPeopleData.filter(mp => mp.job === Job.ACTOR)
