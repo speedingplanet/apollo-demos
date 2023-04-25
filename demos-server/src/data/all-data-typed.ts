@@ -281,24 +281,24 @@ export const moviesActors: MoviesActors[] = [
 {id: 5, title: 'Casino Royale', 2006, 4, 'PG-13', '15'},
 */
 
-export const movies: Movie[] = [{
-	id: 1,
-	title: 'Raiders of the Lost Ark',
-	year: 1981,
-	directors: ['Stephen Spielberg'],
-	writers: [
-		'Lawrence Kasdan',
-		'George Lucas',
-		'Philip Kaufman',
-	],
-	rating: 5,
-	genres: [
-		'action',
-		'adventure',
-		'supernatural',
-	],
-},
-	/*,
+export const movies: Movie[] = [
+	{
+		id: 1,
+		title: 'Raiders of the Lost Ark',
+		year: 1981,
+		directors: ['Stephen Spielberg'],
+		writers: [
+			'Lawrence Kasdan',
+			'George Lucas',
+			'Philip Kaufman',
+		],
+		rating: 5,
+		genres: [
+			'action',
+			'adventure',
+			'supernatural',
+		],
+	},
 	{
 		id: 12,
 		title: 'Casablanca',
@@ -416,7 +416,6 @@ export const movies: Movie[] = [{
 			'romance',
 		],
 	},
-	*/
 ];
 
 export const students: Student[] = [
