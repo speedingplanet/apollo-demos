@@ -5,20 +5,22 @@
 	"main": "index.js",
 	"scripts": {
 		"compile": "tsc --declaration",
-    "compile:types": "npm run codegen && tsc",
-    "codegen": "graphql-codegen --config codegen.ts",
-    "start": "npm run compile && node ./dist/index.js",
-    "start:watch": "tsc --declaration --watch && nodemon ./dist/src/index.js",
+		"compile:watch": "tsc --declaration --watch",
+		"compile:types": "npm run codegen && tsc",
+		"codegen": "graphql-codegen --config codegen.ts",
+		"start": "npm run compile && node ./dist/index.js",
+		"start:watch": "nodemon ./dist/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-  "type": "module",
+	"type": "module",
 	"dependencies": {
 		"@apollo/server": "^4.7.0",
 		"graphql": "^16.6.0",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"lowdb": "^6.0.0"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "3.3.0",
