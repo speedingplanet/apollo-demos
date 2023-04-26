@@ -16,14 +16,24 @@ export const resolvers: Resolvers = {
 			if (!args.filter) {
 				return moviesData;
 			} else {
+				if (!args) return moviesData;
+				/* Should we short-circuit this way? */
+				/*
+				if (args.filter?.id) {
+					return moviesData.filter(m => m.id === args.filter?.id);
+				}
+				*/
 				let { genre, ...singlePropsCriteria } = args.filter;
+				console.log('filter:', singlePropsCriteria);
 
 				// @types/lodash does not handle all Partial<> objects well, thus the assertion
 				// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 				let filteredMovies = _.filter(moviesData, singlePropsCriteria) as Movie[];
-				filteredMovies = filteredMovies.filter(
-					m => m.genres.includes(args.filter?.genre as string)
-				);
+				if (args.filter?.genre) {
+					filteredMovies = filteredMovies.filter(
+						m => m.genres.includes(args.filter?.genre as string)
+					);
+				}
 				return filteredMovies;
 			}
 		},

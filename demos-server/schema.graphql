@@ -18,14 +18,27 @@ type Person {
 }
 
 input MovieFilterInput {
+	id: Int
 	title: String
 	year: Int
 	rating: Int
 	genre: String	
 }
 
+input MovieInput {
+	id: Int
+	title: String!
+	year: Int!
+	rating: Int!
+	genres: [String!]!
+}
+
 type Query {
 	hello(name: String): String!
 	movies(filter: MovieFilterInput): [Movie!]! 
 	actors: [Person!]! 
+}
+
+type Mutation {
+	updateMovie(id: Int!, movie: MovieInput!): Movie!
 }
