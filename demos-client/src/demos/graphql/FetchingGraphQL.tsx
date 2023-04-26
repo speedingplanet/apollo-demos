@@ -1,18 +1,7 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { type Movie } from '../../data/all-data-typed';
-
-const GET_MOVIES = gql`
-	query GetMovies {
-		movies {
-			title
-			year
-			rating
-			directors
-			id
-		}
-	}
-`;
+import { GET_MOVIE_TITLES } from './graphql-queries';
 
 export default function ApolloGraphql() {
 	return (
@@ -26,7 +15,7 @@ export default function ApolloGraphql() {
 export function RenderGraphql() {
 	const {
 		loading, error, data,
-	} = useQuery<{ movies: Array<Partial<Movie>> }>(GET_MOVIES);
+	} = useQuery<{ movies: Array<Partial<Movie>> }>(GET_MOVIE_TITLES);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error : {error.message}</p>;
