@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
 import FetchingGraphQLWithParameters from './graphql/FetchingGraphQLWithParameters';
 import AddingMoviesWithGraphQL from './graphql/AddingMoviesWithGraphQL';
-import UpdatingMoviesWithGraphQL from './graphql/UpdatingMoviesWithGraphQL';
+import UpdatingMoviesWithGraphQL from './graphql/updating/UpdatingMoviesWithGraphQL';
 import FetchingGraphQL from './graphql/FetchingGraphQL';
 import FullForm from './FullForm';
 import ObjectAsProps from './ObjectAsProps';
