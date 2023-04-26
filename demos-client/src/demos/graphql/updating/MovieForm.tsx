@@ -66,6 +66,7 @@ export default function MovieForm({
 					id="movie-title"
 					className="form-control"
 					defaultValue={movieToEdit?.title ?? ''}
+					key={movieToEdit?.title}
 					required
 				/>
 			</div>
@@ -82,6 +83,7 @@ export default function MovieForm({
 					id="movie-year"
 					className="form-control"
 					defaultValue={movieToEdit?.year ?? ''}
+					key={movieToEdit?.year}
 					required
 				/>
 			</div>
@@ -98,6 +100,7 @@ export default function MovieForm({
 					id="movie-rating"
 					className="form-control"
 					defaultValue={movieToEdit?.rating ?? ''}
+					key={movieToEdit?.rating}
 					required
 				/>
 			</div>
@@ -114,6 +117,7 @@ export default function MovieForm({
 					id="movie-genres"
 					className="form-control"
 					defaultValue={movieToEdit?.genres.join(', ') ?? ''}
+					key={movieToEdit?.genres.join(', ')}
 					required
 				/>
 			</div>
@@ -132,6 +136,7 @@ export default function MovieForm({
 					id="movie-director"
 					className="form-control"
 					defaultValue={getPeople(movieToEdit?.directors) ?? ''}
+					key={getPeople(movieToEdit?.}
 
 					required
 				/>
@@ -149,6 +154,7 @@ export default function MovieForm({
 					id="movie-writer"
 					className="form-control"
 					defaultValue={getPeople(movieToEdit?.writers) ?? ''}
+					key={getPeople(movieToEdit?.}
 
 					required
 				/>
@@ -159,6 +165,7 @@ export default function MovieForm({
 					type="hidden"
 					name="id"
 					defaultValue={movieToEdit.id}
+					key={movieToEdit.id}
 				/>
 			)}
 			<div className="mt-2">
@@ -178,15 +185,16 @@ export function EditMovieForm({ movieId, ...props }: EditMovieFormProps) {
 	const { loading, data } = useQuery<MoviesPayload>(QUERY_MOVIE_BY_ID, {
 		variables: { filter: { id: movieId } },
 		skip: !movieId,
+		pollInterval: 1000,
 	});
 
+	console.log('EditMovieForm reloaded');
 	if (loading) return <p>Loading...</p>;
 	if (data) {
 		return (
 			<MovieForm
 				{...props}
 				movieToEdit={data.movies[0]}
-				key={data.movies[0].id}
 			/>
 		);
 	}
