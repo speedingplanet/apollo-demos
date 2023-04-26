@@ -12,22 +12,19 @@ export const resolvers: Resolvers = {
 	Query: {
 		hello: (_, { name }: { name: string }) => `Hello ${name}!`,
 		movies: (parent, args) => {
-			if ('filter' in args) {
-				let singlePropsCriteria = _.pick(args.filter, [
-					'title',
-					'year',
-					'rating',
-				]);
-
-				let filteredMovies = _.filter(moviesData, singlePropsCriteria) as Movie[];
-				if (args.filter && 'genre' in args.filter) {
-					filteredMovies = filteredMovies.filter(
-						m => m.genres.includes(args.filter?.genre as string)
-					);
-				}
-				return filteredMovies;
-			} else {
+			// if (args.filter !== undefined && args.filter !== null) {
+			if (!args.filter) {
 				return moviesData;
+			} else {
+				let { genre, ...singlePropsCriteria } = args.filter;
+
+				// @types/lodash does not handle all Partial<> objects well, thus the assertion
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+				let filteredMovies = _.filter(moviesData, singlePropsCriteria) as Movie[];
+				filteredMovies = filteredMovies.filter(
+					m => m.genres.includes(args.filter?.genre as string)
+				);
+				return filteredMovies;
 			}
 		},
 		actors: () => {
