@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -27,9 +28,29 @@ export type Movie = {
 
 export type MovieFilterInput = {
   genre?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
   rating?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
   year?: InputMaybe<Scalars['Int']>;
+};
+
+export type MovieInput = {
+  genres: Array<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  rating: Scalars['Int'];
+  title: Scalars['String'];
+  year: Scalars['Int'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  updateMovie: Movie;
+};
+
+
+export type MutationUpdateMovieArgs = {
+  id?: InputMaybe<Scalars['Int']>;
+  movie: MovieInput;
 };
 
 export type Person = {
@@ -133,6 +154,8 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Movie: ResolverTypeWrapper<Movie>;
   MovieFilterInput: MovieFilterInput;
+  MovieInput: MovieInput;
+  Mutation: ResolverTypeWrapper<{}>;
   Person: ResolverTypeWrapper<Person>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -144,6 +167,8 @@ export type ResolversParentTypes = {
   Int: Scalars['Int'];
   Movie: Movie;
   MovieFilterInput: MovieFilterInput;
+  MovieInput: MovieInput;
+  Mutation: {};
   Person: Person;
   Query: {};
   String: Scalars['String'];
@@ -159,6 +184,10 @@ export type MovieResolvers<ContextType = any, ParentType extends ResolversParent
   writers?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
   year?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  updateMovie?: Resolver<ResolversTypes['Movie'], ParentType, ContextType, RequireFields<MutationUpdateMovieArgs, 'movie'>>;
 };
 
 export type PersonResolvers<ContextType = any, ParentType extends ResolversParentTypes['Person'] = ResolversParentTypes['Person']> = {
@@ -178,6 +207,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type Resolvers<ContextType = any> = {
   Movie?: MovieResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Person?: PersonResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };

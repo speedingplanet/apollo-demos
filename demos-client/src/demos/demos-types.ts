@@ -1,3 +1,5 @@
+import { type Movie } from '../generated/graphql';
+
 export type SortDirection = 'asc' | 'desc' | undefined;
 export interface SortConfig {
 	sortColumn: string | undefined;
@@ -7,4 +9,8 @@ export interface SortConfig {
 export interface ColumnConfig<T> {
 	field: keyof T;
 	label: string;
+}
+
+export interface MoviesPayload {
+	movies: Movie[];
 }
