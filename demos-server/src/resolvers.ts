@@ -6,6 +6,7 @@ import {
 	Job
 } from './data/all-data-typed.js';
 import type { Movie, Person, Resolvers } from './generated/graphql.js';
+import { GraphQLError } from 'graphql';
 
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 export const resolvers: Resolvers = {
@@ -41,6 +42,31 @@ export const resolvers: Resolvers = {
 			let mps = moviesPeopleData.filter(mp => mp.job === Job.ACTOR)
 				.map(mp => mp.id);
 			return peopleData.filter(p => mps.includes(p.id));
+		},
+	},
+	Mutation: {
+		updateMovie(parent, args) {
+			let { id, movie } = args;
+			let updateMovieIndex = moviesData.findIndex(m => m.id === id);
+			if (updateMovieIndex === -1) {
+				throw new GraphQLError(`Cannot find id ${id} to update`, {
+					extensions: {
+						code: 'BAD_USER_INPUT',
+					},
+				});
+			}
+
+			// Replace original ref with a new object
+			moviesData[updateMovieIndex] = {
+				...moviesData[updateMovieIndex],
+				...movie,
+				id,
+			};
+
+			// Update in place, preserving the reference
+			// Object.assign(moviesData[updateMovieIndex], movie, { id });
+
+			return moviesData[updateMovieIndex];
 		},
 	},
 	Person: {

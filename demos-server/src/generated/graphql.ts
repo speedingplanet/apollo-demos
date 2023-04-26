@@ -49,7 +49,7 @@ export type Mutation = {
 
 
 export type MutationUpdateMovieArgs = {
-  id?: InputMaybe<Scalars['Int']>;
+  id: Scalars['Int'];
   movie: MovieInput;
 };
 
@@ -187,7 +187,7 @@ export type MovieResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  updateMovie?: Resolver<ResolversTypes['Movie'], ParentType, ContextType, RequireFields<MutationUpdateMovieArgs, 'movie'>>;
+  updateMovie?: Resolver<ResolversTypes['Movie'], ParentType, ContextType, RequireFields<MutationUpdateMovieArgs, 'id' | 'movie'>>;
 };
 
 export type PersonResolvers<ContextType = any, ParentType extends ResolversParentTypes['Person'] = ResolversParentTypes['Person']> = {
