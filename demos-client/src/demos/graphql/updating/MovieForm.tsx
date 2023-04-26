@@ -1,4 +1,4 @@
-import { useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import type { Movie } from '../../../generated/graphql';
 import { type MoviesPayload } from '../../demos-types';
 import { QUERY_MOVIE_BY_ID } from '../graphql-queries';
@@ -48,6 +48,7 @@ export default function MovieForm({
 		submitAction(validMovie);
 	};
 
+	console.log('movieToEdit', movieToEdit);
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>
@@ -66,6 +67,7 @@ export default function MovieForm({
 					id="movie-title"
 					className="form-control"
 					defaultValue={movieToEdit?.title ?? ''}
+					key={movieToEdit?.title}
 					required
 				/>
 			</div>
@@ -82,6 +84,7 @@ export default function MovieForm({
 					id="movie-year"
 					className="form-control"
 					defaultValue={movieToEdit?.year ?? ''}
+					key={movieToEdit?.year}
 					required
 				/>
 			</div>
@@ -98,6 +101,7 @@ export default function MovieForm({
 					id="movie-rating"
 					className="form-control"
 					defaultValue={movieToEdit?.rating ?? ''}
+					key={movieToEdit?.rating}
 					required
 				/>
 			</div>
@@ -114,6 +118,7 @@ export default function MovieForm({
 					id="movie-genres"
 					className="form-control"
 					defaultValue={movieToEdit?.genres.join(', ') ?? ''}
+					key={movieToEdit?.genres[0]}
 					required
 				/>
 			</div>
@@ -132,6 +137,7 @@ export default function MovieForm({
 					id="movie-director"
 					className="form-control"
 					defaultValue={getPeople(movieToEdit?.directors) ?? ''}
+					key={getPeople(movieToEdit?.}
 					required
 				/>
 			</div>
@@ -148,6 +154,7 @@ export default function MovieForm({
 					id="movie-writer"
 					className="form-control"
 					defaultValue={getPeople(movieToEdit?.writers) ?? ''}
+					key={getPeople(movieToEdit?.}
 					required
 				/>
 			</div>
@@ -157,6 +164,7 @@ export default function MovieForm({
 					type="hidden"
 					name="id"
 					defaultValue={movieToEdit.id}
+					key={movieToEdit.id}
 				/>
 			)}
 			<div className="mt-2">
@@ -173,26 +181,19 @@ export default function MovieForm({
 
 type EditMovieFormProps = Omit<MovieFormProps, 'movieToEdit'> & { movieId?: number };
 export function EditMovieForm(props: EditMovieFormProps) {
-	const [getMovieById,
-		{
-			called, loading, data,
-		}] = useLazyQuery<MoviesPayload>(QUERY_MOVIE_BY_ID);
+	const { loading, data } = useQuery<MoviesPayload>(QUERY_MOVIE_BY_ID, {
+		variables: { filter: { id: props.movieId } },
+		skip: !props.movieId,
+	});
 
-	if (props.movieId) {
-		if (!called) {
-			void getMovieById({ variables: { filter: { id: props.movieId } } });
-			console.log(`Searching for movie #${props.movieId}`);
-			return null;
-		}
-		if (called && loading) return <p>Loading...</p>;
-		if (data) {
-			return (
-				<MovieForm
-					{...props}
-					movieToEdit={data.movies[0]}
-				/>
-			);
-		}
+	if (loading) return <p>Loading...</p>;
+	if (data) {
+		return (
+			<MovieForm
+				{...props}
+				movieToEdit={data.movies[0]}
+			/>
+		);
 	}
 	return null;
 }
