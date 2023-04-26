@@ -175,10 +175,10 @@ export default function MovieForm({
 }
 
 type EditMovieFormProps = Omit<MovieFormProps, 'movieToEdit'> & { movieId?: number };
-export function EditMovieForm(props: EditMovieFormProps) {
+export function EditMovieForm({ movieId, ...props }: EditMovieFormProps) {
 	const { loading, data } = useQuery<MoviesPayload>(QUERY_MOVIE_BY_ID, {
-		variables: { filter: { id: props.movieId } },
-		skip: !props.movieId,
+		variables: { filter: { id: movieId } },
+		skip: !movieId,
 	});
 
 	if (loading) return <p>Loading...</p>;
