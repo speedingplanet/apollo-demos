@@ -48,7 +48,6 @@ export default function MovieForm({
 		submitAction(validMovie);
 	};
 
-	console.log('movieToEdit', movieToEdit);
 	return (
 		<form onSubmit={handleSubmit}>
 			<div>

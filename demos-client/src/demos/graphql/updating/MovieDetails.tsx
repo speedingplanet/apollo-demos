@@ -1,5 +1,5 @@
 import { type Movie } from '../../../generated/graphql';
-import { type MoviesPayload } from '../../demos-types';
+import type { UpdateMoviesPayload } from '../../demos-types';
 import { renderPeople } from './utility-functions';
 
 export interface MovieDetailsProps {
@@ -28,12 +28,12 @@ export function MovieDetails(props: MovieDetailsProps) {
 interface AsyncMovieDetailsProps {
 	called: boolean;
 	loading: boolean;
-	data?: MoviesPayload | null;
+	data?: UpdateMoviesPayload | null;
 }
 export function AsyncMovieDetails({
 	called, loading, data,
 }: AsyncMovieDetailsProps) {
 	if (called && loading) return <p>Loading updated movie...</p>;
-	if (data && data !== null) return <MovieDetails movie={data.movies[0]} />;
+	if (data && data !== null) return <MovieDetails movie={data.updateMovie} />;
 	return null;
 }

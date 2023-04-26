@@ -14,3 +14,7 @@ export interface ColumnConfig<T> {
 export interface MoviesPayload {
 	movies: Movie[];
 }
+
+export interface UpdateMoviesPayload {
+	updateMovie: Movie;
+}

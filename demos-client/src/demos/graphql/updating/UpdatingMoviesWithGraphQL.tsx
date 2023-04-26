@@ -5,11 +5,11 @@ import { EditMovieForm } from './MovieForm';
 import type { Movie } from '../../../generated/graphql';
 import { useState } from 'react';
 import { AsyncMovieDetails } from './MovieDetails';
-import { type MoviesPayload } from '../../demos-types';
+import type { UpdateMoviesPayload } from '../../demos-types';
 
 export default function UpdatingMoviesWithGraphQL() {
 	const [movieToEditId, setMovieToEditId] = useState<number | undefined>();
-	const [updateMovie, mutationResults] = useMutation<MoviesPayload>(UPDATE_MOVIE);
+	const [updateMovie, mutationResults] = useMutation<UpdateMoviesPayload>(UPDATE_MOVIE);
 
 	const handleSubmitAction = async (formMovie: Movie) => {
 		await updateMovie({
